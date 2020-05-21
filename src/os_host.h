@@ -1,6 +1,8 @@
 #include <unistd.h>
 
-void HostName(const Napi::CallbackInfo& info) {
+Napi::Value HostName(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+
   char hostbuffer[256];
   int hostname;
 
@@ -11,5 +13,7 @@ void HostName(const Napi::CallbackInfo& info) {
         perror("gethostname");
         exit(1);
     }
-  printf("%s\n", hostbuffer);
+
+  Napi::String nodeHostBuffer = Napi::String::New(env, hostbuffer);
+  return nodeHostBuffer;
 }

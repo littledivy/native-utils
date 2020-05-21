@@ -1,6 +1,6 @@
 const addon = require("../");
 
-// addon.hostname;
+console.log(addon.hostname);
 
 addon.ipaddr();
 
