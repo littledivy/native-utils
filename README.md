@@ -4,6 +4,15 @@ Easy-to-use standard library for Node.js.
 
 ![CI](https://github.com/divy-work/native-utils/workflows/CI/badge.svg)
 
+## Requirements
+
+### Linux
+
+NOTE: This has been tested on Ubuntu 18.04
+```sh
+$ sudo apt-get install libxtst-dev libx11-dev
+```
+
 ## Installing
 
 ```sh
