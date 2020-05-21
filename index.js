@@ -1,4 +1,4 @@
-var addon = require('bindings')('spin');
+var addon = require('bindings')('native-utils');
 
 module.exports = {
   hostname: addon.host(),

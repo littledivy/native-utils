@@ -11,3 +11,8 @@ console.log(addon.add(1, 2));
 console.log(addon.minus(.3, .2));
 
 console.log(addon.find("a boy", "l"))
+
+console.log(addon.sdbmHash("hello"))
+/** Clipboard is not yet implemented
+console.log(addon.getClipboardText())
+**/

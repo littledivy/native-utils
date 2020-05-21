@@ -1,7 +1,7 @@
 {
-  "name": "@divy-work/spin-cc",
+  "name": "@divy-work/native-utils",
   "version": "0.0.1",
-  "description": "Native spinners",
+  "description": "A Miscellaneous library for Node.js",
   "main": "index.js",
   "private": false,
   "dependencies": {
@@ -12,7 +12,7 @@
     "test": "node hello.js"
   },
   "gypfile": true,
-  "repository": "https://github.com/divy-work/spin-cc",
+  "repository": "https://github.com/divy-work/native-utils",
   "author": "Divy Srivastava <dj.srivastava23@gmail,com>",
   "license": "MIT"
 }
