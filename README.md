@@ -2,6 +2,8 @@
 
 Easy-to-use standard library for Node.js.
 
+![CI](https://github.com/divy-work/native-utils/workflows/CI/badge.svg)
+
 ## Installing
 
 ```sh
