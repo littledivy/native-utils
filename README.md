@@ -1,14 +1,12 @@
-# Spin-cc
+# Native-utils
 
-Native CLI Spinners for Node.js. This is an experimental project to understand the N-API and node-addon-api. :smiley:
-
-![CI](https://github.com/divy-work/spin-cc/workflows/CI/badge.svg)
+Easy-to-use standard library for Node.js.
 
 ## Installing
 
 ```sh
-$ yarn add @divy-work/spin-cc
-# or use npm! 
+$ yarn add @divy-work/native-utils
+# or use npm!
 # $ npm i
 ```
 
@@ -45,4 +43,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
