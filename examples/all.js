@@ -33,6 +33,11 @@ console.log(utils.adler32Hash("this is a xor8 hash"))
 // perform crc32 hash hash algorithm to string
 console.log(utils.crc32Hash("this is a crc32 hash"))
 
+// write contents to a file
+console.log(utils.write("hello.txt", "yessss!"));
+
+// read contents of a file
+console.log(utils.read("hello.txt"));
 
 /** Clipboard is not yet implemented
 console.log(utils.getClipboardText())

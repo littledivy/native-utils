@@ -7,6 +7,8 @@
 #include "prob.h"
 #include "clipboard.h"
 #include "hash.h"
+#include "write.h"
+#include "read.h"
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
 
@@ -23,6 +25,8 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set("xor8Hash",  Napi::Function::New(env, xor8));
   exports.Set("adler32Hash",  Napi::Function::New(env, adler_32));
   exports.Set("crc32Hash",  Napi::Function::New(env, crc32));
+  exports.Set("write",  Napi::Function::New(env, WriteFile));
+  exports.Set("read",  Napi::Function::New(env, ReadFile));
 
   return exports;
 }
