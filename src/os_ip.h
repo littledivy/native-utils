@@ -2,12 +2,15 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
-void IPInfo(const Napi::CallbackInfo& info) {
+Napi::Value IPInfo(const Napi::CallbackInfo& info) {
+ Napi::Env env = info.Env();
+
  int sock = socket(PF_INET, SOCK_DGRAM, 0);
  sockaddr_in loopback;
 
  if (sock == -1) {
-  printf("Could not socket\n");
+  Napi::TypeError::New(env, "Could not socket").ThrowAsJavaScriptException();
+  return env.Null();
  }
 
  std::memset(&loopback, 0, sizeof(loopback));
@@ -17,13 +20,15 @@ void IPInfo(const Napi::CallbackInfo& info) {
 
  if (connect(sock, reinterpret_cast<sockaddr*>(&loopback), sizeof(loopback)) == -1) {
      close(sock);
-     printf("Could not connect\n");
+     Napi::TypeError::New(env, "Could not connect").ThrowAsJavaScriptException();
+     return env.Null();
  }
 
  socklen_t addrlen = sizeof(loopback);
  if (getsockname(sock, reinterpret_cast<sockaddr*>(&loopback), &addrlen) == -1) {
      close(sock);
-     printf("Could not getsockname\n");
+     Napi::TypeError::New(env, "Could not getsockname").ThrowAsJavaScriptException();
+     return env.Null();
  }
 
  close(sock);
@@ -32,6 +37,8 @@ void IPInfo(const Napi::CallbackInfo& info) {
  if (inet_ntop(AF_INET, &loopback.sin_addr, buf, INET_ADDRSTRLEN) == 0x0) {
   printf("Could not inet_ntop\n");
  } else {
-  printf("%s\n", buf);
+   Napi::String nodeBuf = Napi::String::New(env, buf);
+   //  printf("%s\n", buf);
+   return nodeBuf;
  }
 }
