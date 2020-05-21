@@ -9,6 +9,8 @@
 #include "hash.h"
 #include "write.h"
 #include "read.h"
+#include "keyboard.h"
+#include "mouseinput.h"
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
 
@@ -27,6 +29,8 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set("crc32Hash",  Napi::Function::New(env, crc32));
   exports.Set("write",  Napi::Function::New(env, WriteFile));
   exports.Set("read",  Napi::Function::New(env, ReadFile));
+  exports.Set("type",  Napi::Function::New(env, Type));
+  exports.Set("mouse",  Napi::Function::New(env, MoveMouse));
 
   return exports;
 }

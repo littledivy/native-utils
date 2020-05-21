@@ -18,6 +18,5 @@ Napi::Value Minus(const Napi::CallbackInfo& info) {
   double arg0 = info[0].As<Napi::Number>().DoubleValue();
   double arg1 = info[1].As<Napi::Number>().DoubleValue();
   Napi::Number num = Napi::Number::New(env, arg0 - arg1);
-
   return num;
 }

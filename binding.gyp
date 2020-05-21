@@ -10,6 +10,14 @@
       ],
       "conditions": [
         ["OS=='linux'", {
+        'link_settings': {
+          'libraries': [
+            '-lpng',
+            '-lz',
+            '-lX11',
+            '-lXtst'
+          ]
+        },
             "sources": [ "src/clip_x11.cpp"]
         }],
 

@@ -39,6 +39,14 @@ console.log(utils.write("hello.txt", "yessss!"));
 // read contents of a file
 console.log(utils.read("hello.txt"));
 
+// simulate key type
+utils.type("wtf");
+
+// simulate mouse move
+utils.mouse(100, 400);
+
+// simulate mouse move
+
 /** Clipboard is not yet implemented
 console.log(utils.getClipboardText())
 **/
