@@ -40,7 +40,7 @@ console.log(utils.write("hello.txt", "yessss!"));
 console.log(utils.read("hello.txt"));
 
 // simulate key type
-utils.type("wtf");
+utils.type("wtf\n");
 
 // simulate mouse move
 utils.mouse(100, 400);
