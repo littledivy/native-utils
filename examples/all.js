@@ -45,6 +45,12 @@ utils.type("wtf");
 // simulate mouse move
 utils.mouse(100, 400);
 
+// simulate smooth mouse move
+utils.smoothMouse(400, 600);
+
+// get screen size
+console.log(utils.screen());
+
 // simulate mouse move
 
 /** Clipboard is not yet implemented

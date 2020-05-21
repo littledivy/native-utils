@@ -1,4 +1,5 @@
 #include "utils/types.h"
+#include "utils/sleep.h"
 
 #if defined(_MSC_VER)
 	#include "ms_stdbool.h"
@@ -503,4 +504,41 @@ static double crude_hypot(double x, double y)
 	}
 
 	return ((M_SQRT2 - 1.0) * small) + big;
+}
+
+bool smoothlyMoveMouse(MMPoint endPoint, double speed)
+{
+	MMPoint pos = getMousePos();
+	MMSize screenSize = getMainDisplaySize();
+	double velo_x = 0.0, velo_y = 0.0;
+	double distance;
+
+	while ((distance = crude_hypot((double)pos.x - endPoint.x,
+	                               (double)pos.y - endPoint.y)) > 1.0) {
+		double gravity = DEADBEEF_UNIFORM(5.0, 500.0);
+		double veloDistance;
+		velo_x += (gravity * ((double)endPoint.x - pos.x)) / distance;
+		velo_y += (gravity * ((double)endPoint.y - pos.y)) / distance;
+
+		/* Normalize velocity to get a unit vector of length 1. */
+		veloDistance = crude_hypot(velo_x, velo_y);
+		velo_x /= veloDistance;
+		velo_y /= veloDistance;
+
+		pos.x += floor(velo_x + 0.5);
+		pos.y += floor(velo_y + 0.5);
+
+		/* Make sure we are in the screen boundaries!
+		 * (Strange things will happen if we are not.) */
+		if (pos.x >= screenSize.width || pos.y >= screenSize.height) {
+			return false;
+		}
+
+		moveMouse(MMSignedPointMake((int32_t)pos.x, (int32_t)pos.y));
+
+		/* Wait 1 - (speed) milliseconds. */
+		microsleep(DEADBEEF_UNIFORM(0.7, speed));
+	}
+
+	return true;
 }

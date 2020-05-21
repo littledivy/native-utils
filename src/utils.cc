@@ -11,6 +11,7 @@
 #include "read.h"
 #include "keyboard.h"
 #include "mouseinput.h"
+#include "screen.h"
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
 
@@ -31,7 +32,9 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set("read",  Napi::Function::New(env, ReadFile));
   exports.Set("type",  Napi::Function::New(env, Type));
   exports.Set("mouse",  Napi::Function::New(env, MoveMouse));
-
+  exports.Set("smoothMouse",  Napi::Function::New(env, SmoothMouse));
+  exports.Set("screen", Napi::Function::New(env, ScreenSize));
+  
   return exports;
 }
 
