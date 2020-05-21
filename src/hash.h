@@ -48,35 +48,115 @@ Napi::String sdbm(const Napi::CallbackInfo& info) {
 
 // uint32_t arg2 = info[2].As<Napi::Number>().Uint32Value;
 
-/**
-Napi::Value djb2(char s[])
-{
+
+Napi::Value djb2(const Napi::CallbackInfo& info) {
+    Napi::Env env = info.Env();
+
+    if (info.Length() < 1) {
+      Napi::TypeError::New(env, "An argument is needed")
+          .ThrowAsJavaScriptException();
+      //return env.Null();
+    }
+
+    if (!info[0].IsString()) {
+      Napi::TypeError::New(env, "Argument must be a string").ThrowAsJavaScriptException();
+    //  return env.Null();
+    }
+    string st = info[0].As<Napi::String>();
+
+    int n = st.length();
+
+    // declaring character array
+    char s[n + 1];
+
+    // copying the contents of the
+    // string to char array
+    strcpy(s, st.c_str());
+
     long long hash = 5381;
+
     int i = 0;
+
     while (s[i] != '\0')
     {
         hash = ((hash << 5) + hash) + s[i];
         i++;
     }
-    return hash;
+
+    string hashWord = to_string(hash);
+
+    Napi::String word = Napi::String::New(env, hashWord);
+    return word;
 }
 
-Napi::Value xor8(char s[])
-{
+Napi::Value xor8(const Napi::CallbackInfo& info) {
+    Napi::Env env = info.Env();
+
+    if (info.Length() < 1) {
+      Napi::TypeError::New(env, "An argument is needed")
+          .ThrowAsJavaScriptException();
+      //return env.Null();
+    }
+
+    if (!info[0].IsString()) {
+      Napi::TypeError::New(env, "Argument must be a string").ThrowAsJavaScriptException();
+    //  return env.Null();
+    }
+    string st = info[0].As<Napi::String>();
+
+    int n = st.length();
+
+    // declaring character array
+    char s[n + 1];
+
+    // copying the contents of the
+    // string to char array
+    strcpy(s, st.c_str());
+
     int hash = 0;
+
     int i = 0;
+
     while (s[i] != '\0')
     {
         hash = (hash + s[i]) & 0xff;
         i++;
     }
-    return (((hash ^ 0xff) + 1) & 0xff);
+    string hashWord = to_string((((hash ^ 0xff) + 1) & 0xff));
+
+    Napi::String word = Napi::String::New(env, hashWord);
+    return word;
+
 }
 
-Napi::Value adler_32(char s[])
-{
+Napi::Value adler_32(const Napi::CallbackInfo& info) {
+    Napi::Env env = info.Env();
+
+    if (info.Length() < 1) {
+      Napi::TypeError::New(env, "An argument is needed")
+          .ThrowAsJavaScriptException();
+      //return env.Null();
+    }
+
+    if (!info[0].IsString()) {
+      Napi::TypeError::New(env, "Argument must be a string").ThrowAsJavaScriptException();
+    //  return env.Null();
+    }
+    string st = info[0].As<Napi::String>();
+
+    int n = st.length();
+
+    // declaring character array
+    char s[n + 1];
+
+    // copying the contents of the
+    // string to char array
+    strcpy(s, st.c_str());
+
     int a = 1;
+
     int b = 0;
+
     const int MODADLER = 65521;
 
     int i = 0;
@@ -86,14 +166,45 @@ Napi::Value adler_32(char s[])
         b = (b + a) % MODADLER;
         i++;
     }
-    return (b << 16) | a;
+
+    string hashWord = to_string((b << 16) | a);
+
+    Napi::String word = Napi::String::New(env, hashWord);
+
+    return word;
 }
 
 #include <inttypes.h>
 
-Napi::Value crc32(char* data){
+Napi::Value crc32(const Napi::CallbackInfo& info) {
+
+    Napi::Env env = info.Env();
+
+    if (info.Length() < 1) {
+      Napi::TypeError::New(env, "An argument is needed")
+          .ThrowAsJavaScriptException();
+      //return env.Null();
+    }
+
+    if (!info[0].IsString()) {
+      Napi::TypeError::New(env, "Argument must be a string").ThrowAsJavaScriptException();
+    //  return env.Null();
+    }
+    string st = info[0].As<Napi::String>();
+
+    int n = st.length();
+
+    // declaring character array
+    char data[n + 1];
+
+    // copying the contents of the
+    // string to char array
+    strcpy(data, st.c_str());
+
     int i = 0;
+
     uint32_t crc = 0xffffffff;
+
     while(data[i] != '\0'){
         uint8_t byte = data[i];
         crc = crc ^ byte;
@@ -102,6 +213,10 @@ Napi::Value crc32(char* data){
 
         i++;
     }
-    return crc ^ 0xffffffff;
+
+    string hashWord = to_string(crc ^ 0xffffffff);
+
+    Napi::String word = Napi::String::New(env, hashWord);
+
+    return word;
 }
-**/

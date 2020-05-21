@@ -1,26 +1,39 @@
-const addon = require("../");
+const utils = require("../");
 
 // get local hostname
-console.log(addon.hostname);
+console.log(utils.hostname);
 
 // get ipaddress
-console.log(addon.ipaddr());
+console.log(utils.ipaddr());
 
 // calc probablity
-console.log(addon.probability(0.5, 0.25, 0.5));
+console.log(utils.probability(0.5, 0.25, 0.5));
 
 // add two numbers
-console.log(addon.add(1, 2));
+console.log(utils.add(1, 2));
 
 // subtract two numbers
-console.log(addon.minus(.3, .2));
+console.log(utils.minus(.3, .2));
 
 // find a string in string
-console.log(addon.find("a boy", "l"))
+console.log(utils.find("a boy", "l"))
 
 // perform sdbm hash algorithm to string
+console.log(utils.sdbmHash("this is a sdbm hash"))
 
-console.log(addon.sdbmHash("hello"))
+// perform djb2 hash algorithm to string
+console.log(utils.djb2Hash("this is a djb2 hash"))
+
+// perform xor8 hash algorithm to string
+console.log(utils.xor8Hash("this is a xor8 hash"))
+
+// perform adler_32 hash algorithm to string
+console.log(utils.adler32Hash("this is a xor8 hash"))
+
+// perform crc32 hash hash algorithm to string
+console.log(utils.crc32Hash("this is a crc32 hash"))
+
+
 /** Clipboard is not yet implemented
-console.log(addon.getClipboardText())
+console.log(utils.getClipboardText())
 **/
